@@ -23,3 +23,15 @@ test('ignore empty lines', function(t) {
   t.equal(result[1].fullname, 'Henning Mankel');
   t.end();
 });
+
+test('allow custom delimiter', function (t) {
+  const result = mincsv.parse(`
+name:age
+george:23
+matthew:31
+giulia:26
+  `, ':');
+  t.equal(result[0].name, 'george');
+  t.equal(result[0].age, '23');
+  t.end();
+})
